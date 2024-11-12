@@ -23,12 +23,14 @@ package it.unimi.di.prog2.e04;
 
 /**
  * Vedi <a
- * href="https://github.com/mapio/labprog/blob/master/esercizi/nave_spaziale/Testo.md">testo</a>.
+ * href=
+ * "https://github.com/mapio/labprog/blob/master/esercizi/nave_spaziale/Testo.md">testo</a>.
  */
 public class NaveSpaziale {
 
   /** . */
-  private NaveSpaziale() {}
+  private NaveSpaziale() {
+  }
 
   // Se String[] args è il vettore che contiene gli argomenti sulla linea
   // di comando, potete convertire i primi due in numeri interi con le
@@ -38,5 +40,56 @@ public class NaveSpaziale {
   // int to = Integer.parseInt(args[1]);
   //
   // non c'è bisogno di importare alcun package per poter usare Integer.
+  /**
+   * Legge due interi da riga di comando e stampa il viaggio più breve.
+   * 
+   * @param args due interi, corrispontenti a from e to
+   */
+  public static void main(String[] args) {
+    int from = Integer.parseInt(args[0]);
+    int to = Integer.parseInt(args[1]);
 
+    System.out.println(ViaggioPiuBreve(from, to));
+  }
+
+  /**
+   * Restituisce il viaggio più breve da from a to.
+   * 
+   * @param from coordinata di partenza
+   * @param to   coordinata di arrivo
+   * @return il viaggio più breve da from a to
+   */
+  public static String ViaggioPiuBreve(int from, int to) {
+    String result = "";
+    if (to < 4 * from) {
+      for (int i = from; i < to; i++) {
+        result += "P";
+      }
+    } else if (to % 2 == 0) {
+      int i = from;
+      while (i < to / 4) {
+        result += "P";
+        i++;
+      }
+      while (i <= to - (to / 4)) {
+        result += "S";
+        i *= 4;
+      }
+      while (i < to) {
+        result += "P";
+        i++;
+      }
+    } else {
+      int i = from;
+      while (i <= to - (to / 4)) {
+        result += "S";
+        i *= 4;
+      }
+      while (i < to) {
+        result += "P";
+        i++;
+      }
+    }
+    return result;
+  }
 }

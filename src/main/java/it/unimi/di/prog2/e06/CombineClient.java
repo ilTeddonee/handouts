@@ -29,22 +29,26 @@ import java.util.Scanner;
 public class CombineClient {
 
   /** . */
-  private CombineClient() {}
+  private CombineClient() {
+  }
 
   /**
    * Decodifica una stringa contenente interi separati da spazi.
    *
-   * @param string la stringa in ingresso, non può essere {@code null} e deve contenere interi
-   *     separati da spazi.
+   * @param string la stringa in ingresso, non può essere {@code null} e deve
+   *               contenere interi
+   *               separati da spazi.
    * @return gli interi contenuti nella stringa.
    */
   private static int[] parseInts(String string) {
     List<Integer> list = new ArrayList<>();
     try (Scanner sl = new Scanner(string)) {
-      while (sl.hasNextInt()) list.add(sl.nextInt());
+      while (sl.hasNextInt())
+        list.add(sl.nextInt());
     }
     int[] result = new int[list.size()];
-    for (int i = 0; i < list.size(); i++) result[i] = list.get(i);
+    for (int i = 0; i < list.size(); i++)
+      result[i] = list.get(i);
     return result;
   }
 
@@ -53,5 +57,20 @@ public class CombineClient {
   // combinare e ne emette il risultato della combinazione (separando gli interi
   // uno per linea). Può avvalersi della funzione precedente per decodificare
   // ciascuna delle due linee in ingresso.
-
+  /**
+   * Legge due righe dal flusso di ingresso ciascuna delle quali contiene gli
+   * interi (separati da spazi) di uno dei due array da combinare e ne emette il
+   * risultato della combinazione (separando gli interi uno per linea).
+   *
+   * @param args gli argomenti da riga di comando, ignorati.
+   */
+  public static void main(String[] args) {
+    try (Scanner scanner = new Scanner(System.in)) {
+      int[] a = parseInts(scanner.nextLine());
+      int[] b = parseInts(scanner.nextLine());
+      int[] c = Combine.combine(a, b);
+      for (int i : c)
+        System.out.println(i);
+    }
+  }
 }

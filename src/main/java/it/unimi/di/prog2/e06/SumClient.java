@@ -21,13 +21,37 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e06;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /** Esercizio 4.3 di PDJ. */
 public class SumClient {
 
   /** . */
-  private SumClient() {}
+  private SumClient() {
+  }
 
   // Il main di questa classe legge dal flusso di ingresso una sequenza di al
   // più 100 interi e ne emette la somma nel flusso d'uscita.
 
+  /**
+   * Il main prende in input un elenco di interi da riga di comando e ne stampa la
+   * somma.
+   * 
+   * @param args l'elenco di interi in input.
+   */
+  public static void main(String[] args) {
+    List<Integer> list = new ArrayList<>();
+    try (Scanner scanner = new Scanner(System.in)) {
+      for (int i = 0; i < 100; i++) {
+        if (!scanner.hasNextInt()) {
+          break;
+        }
+        list.add(scanner.nextInt());
+      }
+    }
+    int somma = Sum.sum(list);
+    System.out.println(somma);
+  }
 }

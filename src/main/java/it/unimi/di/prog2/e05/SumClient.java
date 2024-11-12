@@ -25,7 +25,8 @@ package it.unimi.di.prog2.e05;
 public class SumClient {
 
   /** . */
-  private SumClient() {}
+  private SumClient() {
+  }
 
   // Aggiunga qui un main che invochi il metodo sum (che può sviluppare in
   // questa o altra classe) descritto dall'esercizio 3.2 di PDJ.
@@ -33,4 +34,33 @@ public class SumClient {
   // Il main riceve un elenco di interi come parametri sulla linea di comando e
   // ne emette la somma nel flusso d'ingresso.
 
+  /**
+   * Il main prende in input un elenco di interi da riga di comando e ne stampa la
+   * somma.
+   * 
+   * @param args l'elenco di interi in input.
+   */
+  public static void main(String[] args) {
+    int[] a = new int[args.length];
+
+    for (int i = 0; i < args.length; i++) {
+      a[i] = Integer.valueOf(args[i]);
+    }
+    int somma = sum(a);
+    System.out.println(somma);
+  }
+
+  /**
+   * Sum prende in input un array di interi e ne restituisce la somma.
+   * 
+   * @param a array di interi.
+   * @return la somma degli interi dell'array.
+   */
+  public static int sum(int[] a) {
+    int somma = 0;
+    for (int n : a) {
+      somma += n;
+    }
+    return somma;
+  }
 }
